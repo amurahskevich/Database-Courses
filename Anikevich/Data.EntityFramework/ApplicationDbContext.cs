@@ -17,16 +17,19 @@ namespace Data.EntityFramework
                 entity.HasKey(x => x.Id);
 
                 entity.HasOne(d => d.Address)
-                .WithOne(p => p.Client)
-                .HasForeignKey<Address>(d => d.ClientId);
+                    .WithOne(p => p.Client)
+                    .HasForeignKey<Address>(d => d.ClientId)
+                    .OnDelete(DeleteBehavior.Cascade);
 
                 entity.HasOne(d => d.Rate)
-                .WithMany(p => p.Clients)
-                .HasForeignKey(d => d.RateId);
+                    .WithMany(p => p.Clients)
+                    .HasForeignKey(d => d.RateId)
+                    .OnDelete(DeleteBehavior.Restrict);
 
                 entity.HasMany(d => d.Bonuses)
-                .WithOne(p => p.Client)
-                .HasForeignKey(d => d.ClientId);
+                    .WithOne(p => p.Client)
+                    .HasForeignKey(d => d.ClientId)
+                    .OnDelete(DeleteBehavior.Cascade);
             });
 
             modelBuilder.Entity<HobbyClient>(entity =>
@@ -34,12 +37,14 @@ namespace Data.EntityFramework
                 entity.HasKey(sc => new { sc.HobbyId, sc.ClientId });
 
                 entity.HasOne(p => p.Hobby)
-                .WithMany(d => d.Clients)
-                .HasForeignKey(p => p.HobbyId);
+                    .WithMany(d => d.Clients)
+                    .HasForeignKey(p => p.HobbyId)
+                    .OnDelete(DeleteBehavior.Cascade);
 
                 entity.HasOne(p => p.Client)
-                .WithMany(d => d.Hobbies)
-                .HasForeignKey(p => p.ClientId);
+                    .WithMany(d => d.Hobbies)
+                    .HasForeignKey(p => p.ClientId)
+                    .OnDelete(DeleteBehavior.Cascade);
             });
 
             modelBuilder.Entity<Rate>(entity =>
@@ -47,24 +52,29 @@ namespace Data.EntityFramework
                 entity.HasKey(x => x.Id);
 
                 entity.HasOne(p => p.Call)
-                .WithOne(d => d.Rate)
-                .HasForeignKey<Call>(p => p.RateId);
+                    .WithOne(d => d.Rate)
+                    .HasForeignKey<Call>(p => p.RateId)
+                    .OnDelete(DeleteBehavior.Cascade);
 
                 entity.HasOne(p => p.Sms)
-                .WithOne(d => d.Rate)
-                .HasForeignKey<Sms>(p => p.RateId);
+                    .WithOne(d => d.Rate)
+                    .HasForeignKey<Sms>(p => p.RateId)
+                    .OnDelete(DeleteBehavior.Cascade);
 
                 entity.HasOne(p => p.Internet)
-                .WithOne(d => d.Rate)
-                .HasForeignKey<Internet>(p => p.RateId);
+                    .WithOne(d => d.Rate)
+                    .HasForeignKey<Internet>(p => p.RateId)
+                    .OnDelete(DeleteBehavior.Cascade);
 
                 entity.HasOne(p => p.Roaming)
-                .WithOne(d => d.Rate)
-                .HasForeignKey<Roaming>(p => p.RateId);
+                    .WithOne(d => d.Rate)
+                    .HasForeignKey<Roaming>(p => p.RateId)
+                    .OnDelete(DeleteBehavior.Cascade);
 
                 entity.HasOne(p => p.HomeInternet)
-                .WithOne(d => d.Rate)
-                .HasForeignKey<HomeInternet>(p => p.RateId);
+                    .WithOne(d => d.Rate)
+                    .HasForeignKey<HomeInternet>(p => p.RateId)
+                    .OnDelete(DeleteBehavior.Cascade);
             });
         }
 

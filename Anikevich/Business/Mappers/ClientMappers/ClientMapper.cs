@@ -1,0 +1,26 @@
+﻿using Business.Dto;
+using Data.Contracts.Entities;
+
+namespace Business.Mappers.ClientMappers
+{
+    public static class ClientMapper
+    {
+        public static Client Map(ClientDto dto)
+        {
+            return new Client
+            {
+                Id = dto.Id,
+                FirstName = dto.FirstName,
+                LastName = dto.LastName,
+                Age = dto.Age,
+            };
+        }
+
+        public static void MapUpdate(Client client, ClientDto dto)
+        {
+            client.FirstName = dto.FirstName;
+            client.LastName = dto.LastName;
+            client.Age = dto.Age;
+        }
+    }
+}

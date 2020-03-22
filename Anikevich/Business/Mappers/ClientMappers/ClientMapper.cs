@@ -1,4 +1,5 @@
 ﻿using Business.Dto;
+using Business.Mappers.AddressMappers;
 using Data.Contracts.Entities;
 
 namespace Business.Mappers.ClientMappers
@@ -13,6 +14,7 @@ namespace Business.Mappers.ClientMappers
                 FirstName = dto.FirstName,
                 LastName = dto.LastName,
                 Age = dto.Age,
+                Address = AddressMapper.Map(dto.Address),
             };
         }
 
@@ -21,6 +23,7 @@ namespace Business.Mappers.ClientMappers
             client.FirstName = dto.FirstName;
             client.LastName = dto.LastName;
             client.Age = dto.Age;
+            client.Address = AddressMapper.Map(dto.Address);
         }
     }
 }

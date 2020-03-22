@@ -10,17 +10,14 @@ namespace Web.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly IClientService clientService;
 
-        public HomeController(ILogger<HomeController> logger, IClientService clientService)
+        public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
-            this.clientService = clientService;
         }
 
         public IActionResult Index()
         {
-            var s = clientService.GetAll().GetAwaiter().GetResult();
             return View();
         }
 

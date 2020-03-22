@@ -13,6 +13,8 @@
   <ItemGroup>
     <Compile Include="Migrations\20200318133244_InitializeEntities.cs" />
     <Compile Include="Migrations\20200318133244_InitializeEntities.designer.cs" />
+    <Compile Include="Migrations\20200321164329_SetNullKey.cs" />
+    <Compile Include="Migrations\20200321164329_SetNullKey.designer.cs" />
     <Compile Include="Migrations\ApplicationDbContextModelSnapshot.cs" />
   </ItemGroup>
 

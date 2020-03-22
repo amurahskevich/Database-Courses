@@ -37,7 +37,10 @@ namespace Business.Services.ClietnService
 
         public async Task<ClientDto> GettById(int id)
         {
-            var client = await dbContext.Clients.FindAsync(id);
+            var client = await dbContext.Clients
+                .Include(x => x.Address)
+                .Where(x => x.Id == id)
+                .FirstAsync();
 
             return ClientDtoMapper.Map(client);
         }
@@ -51,7 +54,10 @@ namespace Business.Services.ClietnService
 
         public async Task<ClientDto> Update(ClientDto dto)
         {
-            var client = await dbContext.Clients.FindAsync(dto.Id);
+            var client = await dbContext.Clients
+                .Include(x => x.Address)
+                .Where(x => x.Id == dto.Id)
+                .FirstAsync();
             ClientMapper.MapUpdate(client, dto);
             await dbContext.SaveChangesAsync();
 

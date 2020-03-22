@@ -14,7 +14,7 @@ namespace Data.Contracts.Entities
 
         public Address Address { get; set; }
 
-        public int RateId { get; set; }
+        public int? RateId { get; set; }
 
         public Rate Rate { get; set; }
 

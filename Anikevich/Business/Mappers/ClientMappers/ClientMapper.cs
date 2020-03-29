@@ -15,6 +15,9 @@ namespace Business.Mappers.ClientMappers
                 LastName = dto.LastName,
                 Age = dto.Age,
                 Address = AddressMapper.Map(dto.Address),
+                RateId = dto.RateId != 0
+                ? dto.RateId
+                : default,
             };
         }
 
@@ -24,6 +27,7 @@ namespace Business.Mappers.ClientMappers
             client.LastName = dto.LastName;
             client.Age = dto.Age;
             client.Address = AddressMapper.Map(dto.Address);
+            client.RateId = dto.RateId;
         }
     }
 }

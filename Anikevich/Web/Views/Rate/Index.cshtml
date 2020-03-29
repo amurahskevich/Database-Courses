@@ -1,0 +1,24 @@
+﻿@model IReadOnlyCollection<Business.Dto.RateDto>
+
+<a type="button" class="btn btn-dark" asp-action="Create" asp-route-id="@null" style="margin-bottom: 15px;">Добавить Тариф</a>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Название тарифа</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var rate in Model)
+        {
+            <tr>
+                <td>@rate.Name</td>
+                <td>
+                    <a asp-action="Create" asp-route-id="@rate.Id" class="btn btn-link">Редактировать</a>
+                    <br />
+                    <a asp-action="Delete" asp-route-id="@rate.Id" class="btn btn-link">Удалить</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

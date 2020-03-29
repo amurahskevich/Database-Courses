@@ -15,11 +15,22 @@ namespace Business.Mappers.RateMappers
             return new RateDto
             {
                 Id = rate.Id,
-                Call = CallDtoMapper.Map(rate.Call),
-                Sms = SmsDtoMapper.Map(rate.Sms),
-                Internet = InternetDtoMapper.Map(rate.Internet),
-                Roaming = RoamingDtoMapper.Map(rate.Roaming),
-                HomeInternet = HomeInternetDtoMapper.Map(rate.HomeInternet),
+                Name = rate.Name,
+                Call = rate.Call != null 
+                    ? CallDtoMapper.Map(rate.Call)
+                    : new CallDto(),
+                Sms = rate.Sms != null 
+                    ? SmsDtoMapper.Map(rate.Sms)
+                    : new SmsDto(),
+                Internet = rate.Internet != null
+                    ? InternetDtoMapper.Map(rate.Internet)
+                    : new InternetDto(),
+                Roaming = rate.Roaming != null
+                    ? RoamingDtoMapper.Map(rate.Roaming)
+                    : new RoamingDto(),
+                HomeInternet = rate.HomeInternet != null
+                    ? HomeInternetDtoMapper.Map(rate.HomeInternet)
+                    : new HomeInternetDto(),
             };
         }
     }

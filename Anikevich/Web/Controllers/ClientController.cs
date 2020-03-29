@@ -1,6 +1,6 @@
 ﻿using Business.Dto;
 using Business.Services.ClietnService;
-using Microsoft.AspNetCore.Http;
+using Business.Services.RateService;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -9,10 +9,14 @@ namespace Web.Controllers
     public class ClientController : Controller
     {
         private readonly IClientService clientService;
+        private readonly IRateService rateService;
 
-        public ClientController(IClientService clientService)
+        public ClientController(
+            IClientService clientService,
+            IRateService rateService)
         {
             this.clientService = clientService;
+            this.rateService = rateService;
         }
 
         public async Task<IActionResult> Index()
@@ -25,7 +29,10 @@ namespace Web.Controllers
         [HttpGet]
         public async  Task<IActionResult> Create(int? id)
         {
-            if(id == null)
+            var rates = await rateService.GetAll();
+            ViewBag.Rates = rates;
+
+            if (id == null)
             {
                 return View();
             }
@@ -54,19 +61,6 @@ namespace Web.Controllers
             await clientService.Remove(id);
 
             return RedirectToAction("Index");
-        }
-
-        [HttpPost]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
         }
     }
 }

@@ -1,0 +1,77 @@
+﻿@model Business.Dto.RateDto
+
+    <form asp-action="Create" method="post">
+        <div class="form-group">
+            <label>Id</label>
+            <input asp-for="Id" class="form-control" readonly>
+        </div>
+        <div class="form-group">
+            <label>Название тарифа</label>
+            <input asp-for="Name" type="text" class="form-control">
+        </div>
+        <div class="text-center">
+            <label class="text-center">Звонки</label>
+        </div>
+        <div class="form-group">
+            <label>Количество минут бесплатных минут</label>
+            <input asp-for="Call.NumberOfMinutes" type="number" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Плата за одну минуту</label>
+            <input asp-for="Call.FeePerMinute" type="number" class="form-control">
+        </div>
+        <div class="text-center">
+            <label class="text-center">SMS</label>
+        </div>
+        <div class="form-group">
+            <label>Количество минут бесплатных SMS</label>
+            <input asp-for="Sms.NumberOfSms" type="number" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Плата за одну SMS</label>
+            <input asp-for="Sms.FeePerSms" type="number" class="form-control">
+        </div>
+        <div class="text-center">
+            <label class="text-center">Роуминг</label>
+        </div>
+        <div class="form-group">
+            <label>Количество минут бесплатных минут</label>
+            <input asp-for="Roaming.NumberOfMinutes" type="number" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Плата за одну минуту</label>
+            <input asp-for="Roaming.FeePerMinute" type="number" class="form-control">
+        </div>
+        <div class="text-center">
+            <label class="text-center">Мобильный интернет</label>
+        </div>
+        <div class="form-group">
+            <label>Скорость</label>
+            <input asp-for="Internet.Speed" type="number" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Количество бесплатных мегабайт</label>
+            <input asp-for="Internet.NumberOfMegabyte" type="number" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Плала за один мегабайт.</label>
+            <input asp-for="Internet.FeePerMegabyte" type="number" class="form-control">
+        </div>
+        <div class="text-center">
+            <label class="text-center">Домашний интернет</label>
+        </div>
+        <div class="form-group">
+            <label>Скорость</label>
+            <input asp-for="HomeInternet.Speed" type="number" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Количество бесплатных мегабайт</label>
+            <input asp-for="HomeInternet.NumberOfMegabyte" type="number" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Плала за один мегабайт.</label>
+            <input asp-for="HomeInternet.FeePerMegabyte" type="number" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-primary">Сохранить</button>
+    </form>
+

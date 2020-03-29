@@ -15,6 +15,7 @@ namespace Business.Mappers.RateMappers
             return new Rate
             {
                 Id = dto.Id,
+                Name = dto.Name,
                 Call = CallMapper.Map(dto.Call),
                 Sms = SmsMapper.Map(dto.Sms),
                 Internet = InternetMapper.Map(dto.Internet),

@@ -39,6 +39,7 @@ namespace Business.Services.ClietnService
         {
             var client = await dbContext.Clients
                 .Include(x => x.Address)
+                .Include(x => x.Rate)
                 .Where(x => x.Id == id)
                 .FirstAsync();
 
@@ -56,6 +57,7 @@ namespace Business.Services.ClietnService
         {
             var client = await dbContext.Clients
                 .Include(x => x.Address)
+                .Include(x => x.Rate)
                 .Where(x => x.Id == dto.Id)
                 .FirstAsync();
             ClientMapper.MapUpdate(client, dto);

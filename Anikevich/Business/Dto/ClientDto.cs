@@ -10,6 +10,10 @@
 
         public int Age { get; set; }
 
+        public int RateId { get; set; }
+
+        public RateDto Rate { get; set; }
+
         public AddressDto Address { get; set; }
     }
 }

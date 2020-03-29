@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Business.Services.ClietnService;
+using Business.Services.RateService;
 using Data.EntityFramework;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -28,6 +29,7 @@ namespace Web
             services.AddControllersWithViews();
             services.AddTransient<ApplicationDbContext>();
             services.AddTransient<IClientService,ClientService>();
+            services.AddTransient<IRateService, RateService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

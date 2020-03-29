@@ -1,5 +1,6 @@
 ﻿using Business.Dto;
 using Business.Mappers.AddressMappers;
+using Business.Mappers.RateMappers;
 using Data.Contracts.Entities;
 
 namespace Business.Mappers.ClientMappers
@@ -14,6 +15,12 @@ namespace Business.Mappers.ClientMappers
                 FirstName = client.FirstName,
                 LastName = client.LastName,
                 Age = client.Age,
+                RateId = client.RateId != null
+                    ? client.RateId.Value
+                    : default,
+                Rate = client.Rate != null
+                    ? RateDtoMapper.Map(client.Rate)
+                    : new RateDto(),
                 Address = client.Address != null
                     ? AddressDtoMapper.Map(client.Address)
                     : new AddressDto(),

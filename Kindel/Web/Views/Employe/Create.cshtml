@@ -1,0 +1,73 @@
+﻿@model Contracts.Employe.EmployeDto
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label for="exampleInputEmail1">Идентификационный номер</label>
+        <input asp-for="Id" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" readonly>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Имя</label>
+        <input asp-for="FirstName" type="text" class="form-control" id="exampleInputPassword1">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Фамилия</label>
+        <input asp-for="LastName" type="text" class="form-control" id="exampleInputPassword1">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Возраст</label>
+        <input asp-for="Age" type="text" class="form-control" id="exampleInputPassword1">
+    </div>
+    <div class="form-group form-check">
+        <input asp-for="IsManager" type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label asp-for="IsManager" class="form-check-label" for="exampleCheck1">Начальник отдела</label>
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlSelect1">Отдел</label>
+        <select asp-for="DepartmentId" class="form-control" id="exampleFormControlSelect1">
+            @foreach (var department in ViewBag.Departments)
+            {
+                if (Model?.DepartmentId == department.Id)
+                {
+                    <option selected value="@department.Id">@department.Name</option>
+                }
+                else
+                {
+                    <option value="@department.Id">@department.Name</option>
+                }
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlSelect1">Категория</label>
+        <select asp-for="CategoryId" class="form-control" id="exampleFormControlSelect1">
+            @foreach (var category in ViewBag.Categories)
+            {
+                if (Model?.CategoryId == category.Id)
+                {
+                    <option selected value="@category.Id">@category.Name</option>
+                }
+                else
+                {
+                    <option value="@category.Id">@category.Name</option>
+                }
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlSelect1">Проект</label>
+        <select asp-for="ProjectId" class="form-control" id="exampleFormControlSelect1">
+            @foreach (var project in ViewBag.Project)
+            {
+                if (Model?.ProjectId == project.Id)
+                {
+                    <option selected value="@project.Id">@project.Name</option>
+                }
+                else
+                {
+                    <option value="@project.Id">@project.Name</option>
+                }
+            }
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+</form>

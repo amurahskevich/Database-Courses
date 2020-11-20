@@ -1,0 +1,80 @@
+﻿@model IReadOnlyCollection<Contracts.Employe.EmployeDto>
+
+<a type="button" class="btn btn-dark" asp-action="Create" asp-route-id="@null" style="margin-bottom: 15px;margin-right: 20px">Добавить сотрудника</a>
+<a type="button" class="btn btn-dark" asp-action="Index" asp-route-type="managers" style="margin-bottom: 15px;">Только руководители отделов</a>
+
+<div class="btn-group" style="margin-bottom: 15px;">
+    <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Сотрудники на проекте
+    </button>
+    <div class="dropdown-menu">
+        @foreach (var project in ViewBag.Project)
+        {
+        <a class="dropdown-item" asp-action="Index" asp-route-type="project" asp-route-id="@project.Id">@project.Name</a>
+        }
+    </div>
+</div>
+
+<div class="btn-group" style="margin-bottom: 15px;">
+    <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Сотдрудники отдела
+    </button>
+    <div class="dropdown-menu">
+        @foreach (var department in ViewBag.Departments)
+        {
+            <a class="dropdown-item" asp-action="Index" asp-route-type="department" asp-route-id="@department.Id">@department.Name</a>
+        }
+    </div>
+</div>
+
+<div class="btn-group" style="margin-bottom: 15px;">
+    <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Сотдрудники категории
+    </button>
+    <div class="dropdown-menu">
+        @foreach (var category in ViewBag.Categories)
+        {
+            <a class="dropdown-item" asp-action="Index" asp-route-type="category" asp-route-id="@category.Id">@category.Name</a>
+        }
+    </div>
+</div>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Имя</th>
+            <th scope="col">Возраст</th>
+            <th scope="col">Руководитель отдела</th>
+            <th scope="col">Категория</th>
+            <th scope="col">Отдел</th>
+            <th scope="col">Текущий проект</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var employe in Model)
+        {
+        <tr>
+            <td>@employe.FirstName @employe.LastName</td>
+            <td>@employe.Age</td>
+            <td>
+                @if (employe.IsManager)
+                {
+                    <div>Да</div>
+                }
+                else
+                {
+                    <div>Нет</div>
+                }
+            </td>
+            <td>@employe.CategoryName</td>
+            <td>@employe.DepartmentName</td>
+            <td>@employe.ProjectName</td>
+            <td>
+                <a asp-action="Create" asp-route-id="@employe.Id" class="btn btn-link">Редактировать</a>
+                <br />
+                <a asp-action="Delete" asp-route-id="@employe.Id" class="btn btn-link">Удалить</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

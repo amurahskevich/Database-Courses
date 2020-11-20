@@ -1,0 +1,30 @@
+﻿@model IReadOnlyCollection<Contracts.Department.DepartmentDto>
+
+<a type="button" class="btn btn-dark" asp-action="Create" asp-route-id="@null" style="margin-bottom: 15px;">Добавить отдел</a>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Название отдела</th>
+            <th scope="col">Начальник отдела</th>
+            <th scope="col">Количество человек в отделе</th>
+            <th scope="col">Действия</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var department in Model)
+    {
+        <tr>
+            <td>@department.Name</td>
+            <td>@department.ManagerName</td>
+            <td>@department.CountOfEmployes</td>
+            <td>
+                <a asp-action="Create" asp-route-id="@department.Id" class="btn btn-link">Редактировать</a>
+                <br />
+                <a asp-action="Delete" asp-route-id="@department.Id" class="btn btn-link">Удалить</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+

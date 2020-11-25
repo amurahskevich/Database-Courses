@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Contracts\Contracts.csproj" />
+    <ProjectReference Include="..\Domain\Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Animals\Services\" />
+    <Folder Include="Animals\Mapping\" />
+    <Folder Include="Cages\Services\" />
+    <Folder Include="Cages\Mapping\" />
+    <Folder Include="Employes\Services\" />
+    <Folder Include="Kinds\Services\" />
+    <Folder Include="Positions\Services\" />
+  </ItemGroup>
+
+</Project>

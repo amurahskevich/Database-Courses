@@ -1,0 +1,43 @@
+﻿@model IReadOnlyCollection<Contracts.Animal.AnimalDto>
+
+<a type="button" class="btn btn-link" asp-action="Create" asp-route-id="@null">Добавить животное</a>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Кличка</th>
+            <th scope="col">Пол</th>
+            <th scope="col">Вид</th>
+            <th scope="col">Номер клетки</th>
+            <th scope="col">Обслуживающие сотрудники</th>
+            <th scope="col">Действия</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var (animal, index) in Model.Select((p, i) => (p, i)))
+    {
+        <tr>
+            <th scope="row">@(index+1)</th>
+            <td>@animal.Name</td>
+            <td>@animal.Sex.ToString()</td>
+            <td>@animal.KindName</td>
+            <td>@animal.CageNumber</td>
+            <td>
+                @foreach (var employe in ViewBag.Employes)
+                {
+                    if (animal.Employes.Any(p => p == employe.Id))
+                    {
+                        <div>@employe.Name</div>
+                    }
+                }
+            </td>
+            <td>
+                <a type="button" class="btn btn-primary" asp-action="Create" asp-route-id="@animal.Id">Редактировать</a>
+                <br />
+                <a type="button" class="btn btn-danger" asp-action="Delete" asp-route-id="@animal.Id">Удалить</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

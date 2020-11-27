@@ -1,34 +1,55 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using Business.Kinds.Mapping;
 using Contracts.Kind;
+using Domain;
 
 namespace Business.Kinds.Services
 {
     public class KindService : IKindService
     {
-        public Task<KindDto> Get(int id)
+        private readonly UnitOfWork unitOfWork;
+
+        public KindService(ApplicationDbContext context)
         {
-            throw new System.NotImplementedException();
+            this.unitOfWork = new UnitOfWork(context);
         }
 
-        public Task<IReadOnlyCollection<KindDto>> GetList()
+        public async Task<KindDto> Get(int id)
         {
-            throw new System.NotImplementedException();
+            var kind = await this.unitOfWork.Kinds.Get(id);
+
+            return KindMapper.Map(kind);
         }
 
-        public Task Create(KindDto entity)
+        public async Task<IReadOnlyCollection<KindDto>> GetList()
         {
-            throw new System.NotImplementedException();
+            var kinds = await this.unitOfWork.Kinds.GetList();
+
+            return kinds.Select(KindMapper.Map).ToArray();
         }
 
-        public Task Update(KindDto entity)
+        public async Task Create(KindDto entity)
         {
-            throw new System.NotImplementedException();
+            var kind = KindMapper.Map(entity);
+
+            await this.unitOfWork.Kinds.Create(kind);
         }
 
-        public Task Delete(int id)
+        public async Task Update(KindDto entity)
         {
-            throw new System.NotImplementedException();
+            var kind = await this.unitOfWork.Kinds.Get(entity.Id);
+            KindMapper.MapUpdate(kind, entity);
+
+            await this.unitOfWork.Kinds.Update(kind);
+        }
+
+        public async Task Delete(int id)
+        {
+            var kind = await this.unitOfWork.Kinds.Get(id);
+
+            await this.unitOfWork.Kinds.Delete(kind);
         }
     }
 }

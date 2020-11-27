@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using Domain.Entity;
 
 namespace Contracts.Animal
 {
@@ -8,12 +8,16 @@ namespace Contracts.Animal
 
         public string Name { get; set; }
 
-        public string Sex { get; set; }
+        public Sex Sex { get; set; }
 
         public int KindId { get; set; }
 
+        public string KindName { get; set; }
+
         public int CageId { get; set; }
 
-        public IReadOnlyCollection<int> Employes { get; set; }
+        public int CageNumber { get; set; }
+
+        public int[] Employes { get; set; }
     }
 }

@@ -1,34 +1,54 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using Business.Animals.Mapping;
 using Contracts.Animal;
+using Domain;
 
 namespace Business.Animals.Services
 {
     public class AnimalService : IAnimalService
     {
-        public Task<AnimalDto> Get(int id)
+        private readonly UnitOfWork unitOfWork;
+
+        public AnimalService(ApplicationDbContext context)
         {
-            throw new System.NotImplementedException();
+            this.unitOfWork = new UnitOfWork(context);
         }
 
-        public Task<IReadOnlyCollection<AnimalDto>> GetList()
+        public async Task<AnimalDto> Get(int id)
         {
-            throw new System.NotImplementedException();
+            var animal = await this.unitOfWork.Animals.Get(id);
+
+            return AnimalMapper.Map(animal);
         }
 
-        public Task Create(AnimalDto entity)
+        public async Task<IReadOnlyCollection<AnimalDto>> GetList()
         {
-            throw new System.NotImplementedException();
+            var animals = await this.unitOfWork.Animals.GetList();
+
+            return animals.Select(AnimalMapper.Map).ToArray();
         }
 
-        public Task Update(AnimalDto entity)
+        public async Task Create(AnimalDto entity)
         {
-            throw new System.NotImplementedException();
+            var animal = AnimalMapper.Map(entity);
+            await this.unitOfWork.Animals.Create(animal);
         }
 
-        public Task Delete(int id)
+        public async Task Update(AnimalDto entity)
         {
-            throw new System.NotImplementedException();
+            var animal = await this.unitOfWork.Animals.Get(entity.Id);
+            AnimalMapper.MapUpdate(animal, entity);
+
+            await this.unitOfWork.Animals.Update(animal);
+        }
+
+        public async Task Delete(int id)
+        {
+            var animal = await this.unitOfWork.Animals.Get(id);
+
+            await this.unitOfWork.Animals.Delete(animal);
         }
     }
 }

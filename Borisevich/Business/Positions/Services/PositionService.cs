@@ -1,34 +1,55 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using Business.Positions.Mapping;
 using Contracts.Position;
+using Domain;
 
 namespace Business.Positions.Services
 {
     public class PositionService : IPositionService
     {
-        public Task<PositionDto> Get(int id)
+        private readonly UnitOfWork unitOfWork;
+
+        public PositionService(ApplicationDbContext context)
         {
-            throw new System.NotImplementedException();
+            this.unitOfWork = new UnitOfWork(context);
         }
 
-        public Task<IReadOnlyCollection<PositionDto>> GetList()
+        public async Task<PositionDto> Get(int id)
         {
-            throw new System.NotImplementedException();
+            var position = await this.unitOfWork.Positions.Get(id);
+
+            return PositionMapper.Map(position);
         }
 
-        public Task Create(PositionDto entity)
+        public async Task<IReadOnlyCollection<PositionDto>> GetList()
         {
-            throw new System.NotImplementedException();
+            var positions = await this.unitOfWork.Positions.GetList();
+
+            return positions.Select(PositionMapper.Map).ToArray();
         }
 
-        public Task Update(PositionDto entity)
+        public async Task Create(PositionDto entity)
         {
-            throw new System.NotImplementedException();
+            var position = PositionMapper.Map(entity);
+
+            await this.unitOfWork.Positions.Create(position);
         }
 
-        public Task Delete(int id)
+        public async Task Update(PositionDto entity)
         {
-            throw new System.NotImplementedException();
+            var position = await this.unitOfWork.Positions.Get(entity.Id);
+            PositionMapper.MapUpdate(position, entity);
+
+            await this.unitOfWork.Positions.Update(position);
+        }
+
+        public async Task Delete(int id)
+        {
+            var position = await this.unitOfWork.Positions.Get(id);
+
+            await this.unitOfWork.Positions.Delete(position);
         }
     }
 }

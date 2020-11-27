@@ -12,11 +12,13 @@ namespace Domain.EntityConfiguration
 
             builder.HasOne(p => p.Animal)
                 .WithMany(d => d.AnimalEmployes)
-                .HasForeignKey(p => p.AnimalId);
+                .HasForeignKey(p => p.AnimalId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasOne(p => p.Employe)
                 .WithMany(d => d.AnimalEmployes)
-                .HasForeignKey(p => p.EmployeId);
+                .HasForeignKey(p => p.EmployeId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

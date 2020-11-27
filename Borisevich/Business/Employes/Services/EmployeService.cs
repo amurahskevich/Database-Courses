@@ -1,34 +1,62 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using Business.Employes.Mapping;
+using Business.Extensions;
 using Contracts.Employe;
+using Domain;
 
 namespace Business.Employes.Services
 {
     public class EmployeService : IEmployeService
     {
-        public Task<EmployeDto> Get(int id)
+        private readonly UnitOfWork unitOfWork;
+
+        public EmployeService(ApplicationDbContext context)
         {
-            throw new System.NotImplementedException();
+            this.unitOfWork = new UnitOfWork(context);
         }
 
-        public Task<IReadOnlyCollection<EmployeDto>> GetList()
+        public async Task<EmployeDto> Get(int id)
         {
-            throw new System.NotImplementedException();
+            var employe = await this.unitOfWork.Employes.Get(id);
+
+            return EmployeMapper.Map(employe);
         }
 
-        public Task Create(EmployeDto entity)
+        public async Task<IReadOnlyCollection<EmployeDto>> GetList()
         {
-            throw new System.NotImplementedException();
+            var employe = await this.unitOfWork.Employes.GetList();
+
+            return employe.Select(EmployeMapper.Map).ToArray();
         }
 
-        public Task Update(EmployeDto entity)
+        public async Task Create(EmployeDto entity)
         {
-            throw new System.NotImplementedException();
+            var employe = EmployeMapper.Map(entity);
+            await this.unitOfWork.Employes.Create(employe);
+            var animalEmployes = entity.Animals.OrEmpty()
+                .Select(p => EmployeMapper.MapAnimalEmploye(p, employe.Id))
+                .ToArray();
+            await this.unitOfWork.AnimalEmployes.CreateRange(animalEmployes);
         }
 
-        public Task Delete(int id)
+        public async Task Update(EmployeDto entity)
         {
-            throw new System.NotImplementedException();
+            var employe = await this.unitOfWork.Employes.Get(entity.Id);
+            EmployeMapper.MapUpdate(employe, entity);
+            await this.unitOfWork.AnimalEmployes.RemoveRange(employe.AnimalEmployes.ToArray());
+            var animalEmployes = entity.Animals.OrEmpty()
+                .Select(p => EmployeMapper.MapAnimalEmploye(p, employe.Id))
+                .ToArray();
+            await this.unitOfWork.AnimalEmployes.CreateRange(animalEmployes);
+        }
+
+        public async Task Delete(int id)
+        {
+            var employe = await this.unitOfWork.Employes.Get(id);
+
+            await this.unitOfWork.Employes.Delete(employe);
         }
     }
 }

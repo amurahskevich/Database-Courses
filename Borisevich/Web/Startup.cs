@@ -1,3 +1,4 @@
+using Business;
 using Domain;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -23,6 +24,7 @@ namespace Web
             services.AddApplicationDbContext(this.Configuration);
 
             services.RegistrationDomainDependencies();
+            services.RegistrationBusinessDependencies();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

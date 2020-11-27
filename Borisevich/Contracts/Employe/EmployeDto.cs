@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Domain.Entity;
+﻿using Domain.Entity;
 
 namespace Contracts.Employe
 {
@@ -13,8 +12,10 @@ namespace Contracts.Employe
 
         public int Age { get; set; }
 
+        public string PositionName { get; set; }
+
         public int PositionId { get; set; }
 
-        public IReadOnlyCollection<int> Animals { get; set; }
+        public int[] Animals { get; set; }
     }
 }

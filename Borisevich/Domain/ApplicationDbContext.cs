@@ -16,6 +16,13 @@ namespace Domain
 
         public virtual DbSet<Cage> Cages { get; set; }
 
+        public virtual DbSet<AnimalEmploye> AnimalEmployes { get; set; }
+
+        public ApplicationDbContext(DbContextOptions options)
+            : base(options)
+        {
+        }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new AnimalEmployeEntityTypeConfiguration());

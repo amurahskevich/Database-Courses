@@ -17,6 +17,8 @@ namespace Domain
 
         public PositionRepository Positions { get; }
 
+        public AnimalEmployeRepository AnimalEmployes { get; }
+
         public UnitOfWork(ApplicationDbContext context)
         {
             this.context = context;
@@ -26,6 +28,7 @@ namespace Domain
             this.Employes = new EmployeRepository(context);
             this.Kinds = new KindRepository(context);
             this.Positions = new PositionRepository(context);
+            this.AnimalEmployes = new AnimalEmployeRepository(context);
         }
 
         public void Dispose()

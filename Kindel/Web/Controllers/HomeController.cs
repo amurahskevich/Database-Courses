@@ -14,6 +14,7 @@ namespace Web.Controllers
 
         public IActionResult Index()
         {
+            var ss = "qwe";
             return RedirectToAction("Index", "Employe");
         }
 

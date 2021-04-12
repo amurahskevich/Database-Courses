@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31129.286
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FootballManagement.Web", "FootballManagement.Web\FootballManagement.Web.csproj", "{56C47777-C0AD-4FE2-9853-AB9E4C6AF54E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballManagement.Data.Contracts", "FootballManagement.Data.Contracts\FootballManagement.Data.Contracts.csproj", "{D5D4C523-7250-4FB0-9FC4-26DA94E6D7AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballManagement.Data.EntityFramework", "FootballManagement.Data.EntityFramework\FootballManagement.Data.EntityFramework.csproj", "{AD10C85A-360F-410D-BE63-519EE8827E95}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballManagement.Domain.Contracts", "FootballManagement.Domain.Contracts\FootballManagement.Domain.Contracts.csproj", "{BE77BB05-4112-47CB-8B1A-6A7B9B48C4A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballManagement.Domain.Services", "FootballManagement.Domaint.Services\FootballManagement.Domain.Services.csproj", "{4E0C3EC4-DEC4-44F0-85E2-3FBFA4C8D228}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballManagement.Infrastructure", "FootballManagement.Infrastructure\FootballManagement.Infrastructure.csproj", "{695361D6-3267-4C83-937E-43A113A6389F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{56C47777-C0AD-4FE2-9853-AB9E4C6AF54E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56C47777-C0AD-4FE2-9853-AB9E4C6AF54E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56C47777-C0AD-4FE2-9853-AB9E4C6AF54E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56C47777-C0AD-4FE2-9853-AB9E4C6AF54E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5D4C523-7250-4FB0-9FC4-26DA94E6D7AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5D4C523-7250-4FB0-9FC4-26DA94E6D7AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5D4C523-7250-4FB0-9FC4-26DA94E6D7AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5D4C523-7250-4FB0-9FC4-26DA94E6D7AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD10C85A-360F-410D-BE63-519EE8827E95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD10C85A-360F-410D-BE63-519EE8827E95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD10C85A-360F-410D-BE63-519EE8827E95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD10C85A-360F-410D-BE63-519EE8827E95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE77BB05-4112-47CB-8B1A-6A7B9B48C4A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE77BB05-4112-47CB-8B1A-6A7B9B48C4A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE77BB05-4112-47CB-8B1A-6A7B9B48C4A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE77BB05-4112-47CB-8B1A-6A7B9B48C4A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E0C3EC4-DEC4-44F0-85E2-3FBFA4C8D228}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E0C3EC4-DEC4-44F0-85E2-3FBFA4C8D228}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E0C3EC4-DEC4-44F0-85E2-3FBFA4C8D228}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E0C3EC4-DEC4-44F0-85E2-3FBFA4C8D228}.Release|Any CPU.Build.0 = Release|Any CPU
+		{695361D6-3267-4C83-937E-43A113A6389F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{695361D6-3267-4C83-937E-43A113A6389F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{695361D6-3267-4C83-937E-43A113A6389F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{695361D6-3267-4C83-937E-43A113A6389F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4874A054-E201-4A34-A1D6-4A90AF92C720}
+	EndGlobalSection
+EndGlobal
